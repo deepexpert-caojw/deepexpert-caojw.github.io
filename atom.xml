@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://deepexpert-caojw.github.io</id>
     <title>小璇窝</title>
-    <updated>2020-08-25T05:25:32.853Z</updated>
+    <updated>2020-08-25T05:28:44.373Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://deepexpert-caojw.github.io"/>
     <link rel="self" href="https://deepexpert-caojw.github.io/atom.xml"/>
@@ -10,4 +10,13 @@
     <logo>https://deepexpert-caojw.github.io/images/avatar.png</logo>
     <icon>https://deepexpert-caojw.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 小璇窝</rights>
+    <entry>
+        <title type="html"><![CDATA[璇声不息 朝暮期许]]></title>
+        <id>https://deepexpert-caojw.github.io/post/xuan-sheng-bu-xi-zhao-mu-qi-xu/</id>
+        <link href="https://deepexpert-caojw.github.io/post/xuan-sheng-bu-xi-zhao-mu-qi-xu/">
+        </link>
+        <updated>2020-08-25T05:27:20.000Z</updated>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://deepexpert-caojw.github.io/post-images/1598333264398.jpg" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
 </feed>
