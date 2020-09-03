@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://deepexpert-caojw.github.io</id>
     <title>小璇窝</title>
-    <updated>2020-09-03T03:46:01.537Z</updated>
+    <updated>2020-09-03T07:25:11.433Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://deepexpert-caojw.github.io"/>
     <link rel="self" href="https://deepexpert-caojw.github.io/atom.xml"/>
@@ -102,11 +102,25 @@ yum install ruby yum install rubygems gem install redis</li>
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[【SpringCloud】记eureka client注册时候的一个坑: 服务已经注册成功但是无法连接]]></title>
+        <id>https://deepexpert-caojw.github.io/post/springcloud-ji-eureka-client-zhu-ce-shi-hou-de-yi-ge-keng-fu-wu-yi-jing-zhu-ce-cheng-gong-dan-shi-wu-fa-lian-jie/</id>
+        <link href="https://deepexpert-caojw.github.io/post/springcloud-ji-eureka-client-zhu-ce-shi-hou-de-yi-ge-keng-fu-wu-yi-jing-zhu-ce-cheng-gong-dan-shi-wu-fa-lian-jie/">
+        </link>
+        <updated>2019-02-19T08:31:16.000Z</updated>
+        <content type="html"><![CDATA[<p>SpringCloud向eureka服务注册中心时候，如果不指定IP，设定的IP地址可能是局域网IP，如果client之间网段不通，会无法进行通信。</p>
+<p>SpringCloud注册时候使用指定的IP注册：</p>
+<p>eureka:<br>
+instance:<br>
+prefer-ip-address: true<br>
+ip-address: 10.33.133.133</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[【JAVA】记录一次详细的java利用freemarker生成word模板和坑]]></title>
         <id>https://deepexpert-caojw.github.io/post/ji-lu-yi-ci-xiang-xi-de-java-li-yong-freemarker-sheng-cheng-word-mo-ban-he-keng/</id>
         <link href="https://deepexpert-caojw.github.io/post/ji-lu-yi-ci-xiang-xi-de-java-li-yong-freemarker-sheng-cheng-word-mo-ban-he-keng/">
         </link>
-        <updated>2019-03-16T02:21:04.000Z</updated>
+        <updated>2018-11-23T02:21:04.000Z</updated>
         <content type="html"><![CDATA[<p>需求描述: 根据公司纪律小组的电子违规记录，生成word综合分析文档。形式如：</p>
 <p>1 . 上班时间打游戏</p>
 <p>（1）XXX在XXX时间打游戏</p>
@@ -143,20 +157,6 @@ String itempic;<br>
 <p>&lt;/w:binData&gt;&lt;v:shape id=&quot;_x56fe__x7247__x0020_1&quot; o:spid=&quot;_x0000_i1025&quot; type=&quot;#_x0000_t75&quot; alt=&quot;大厅【音】_20190111135230431&quot; style=&quot;width:441.8pt;height:248.75pt;visibility:visible;mso-wrap-style:square&quot;&gt;&lt;v:imagedata src=&quot;${&quot;wordml://0300000&quot;+item_index+1+&quot;.jpg&quot;}&quot; o:title=&quot;大厅【音】_20190111135230431&quot;/&gt;&lt;/v:shape&gt;&lt;/w:pict&gt;&lt;/w:r&gt;&lt;/w:p&gt;</p>
 <p>&lt;/#list&gt;</p>
 <p>&lt;/#list&gt;</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【SpringCloud】记eureka client注册时候的一个坑: 服务已经注册成功但是无法连接]]></title>
-        <id>https://deepexpert-caojw.github.io/post/springcloud-ji-eureka-client-zhu-ce-shi-hou-de-yi-ge-keng-fu-wu-yi-jing-zhu-ce-cheng-gong-dan-shi-wu-fa-lian-jie/</id>
-        <link href="https://deepexpert-caojw.github.io/post/springcloud-ji-eureka-client-zhu-ce-shi-hou-de-yi-ge-keng-fu-wu-yi-jing-zhu-ce-cheng-gong-dan-shi-wu-fa-lian-jie/">
-        </link>
-        <updated>2019-02-19T08:31:16.000Z</updated>
-        <content type="html"><![CDATA[<p>SpringCloud向eureka服务注册中心时候，如果不指定IP，设定的IP地址可能是局域网IP，如果client之间网段不通，会无法进行通信。</p>
-<p>SpringCloud注册时候使用指定的IP注册：</p>
-<p>eureka:<br>
-instance:<br>
-prefer-ip-address: true<br>
-ip-address: 10.33.133.133</p>
 ]]></content>
     </entry>
 </feed>
