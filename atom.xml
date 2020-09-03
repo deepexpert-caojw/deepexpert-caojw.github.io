@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://deepexpert-caojw.github.io</id>
     <title>小璇窝</title>
-    <updated>2020-09-03T02:40:09.145Z</updated>
+    <updated>2020-09-03T03:46:01.537Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://deepexpert-caojw.github.io"/>
     <link rel="self" href="https://deepexpert-caojw.github.io/atom.xml"/>
@@ -11,12 +11,15 @@
     <icon>https://deepexpert-caojw.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 小璇窝</rights>
     <entry>
-        <title type="html"><![CDATA[璇音不息 朝暮期许]]></title>
-        <id>https://deepexpert-caojw.github.io/post/xuan-sheng-bu-xi-zhao-mu-qi-xu/</id>
-        <link href="https://deepexpert-caojw.github.io/post/xuan-sheng-bu-xi-zhao-mu-qi-xu/">
+        <title type="html"><![CDATA[【SpringBoot】记录一次高并发调优经历]]></title>
+        <id>https://deepexpert-caojw.github.io/post/springboot-ji-lu-yi-ci-gao-bing-fa-diao-you-jing-li/</id>
+        <link href="https://deepexpert-caojw.github.io/post/springboot-ji-lu-yi-ci-gao-bing-fa-diao-you-jing-li/">
         </link>
-        <updated>2020-08-25T05:27:20.000Z</updated>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://deepexpert-caojw.github.io/post-images/1598333264398.jpg" alt="" loading="lazy"></figure>
+        <updated>2020-09-03T02:43:59.000Z</updated>
+        <content type="html"><![CDATA[<p>本公司是一家游戏公司，需要做一点埋点统计系统。因为客户端涉及到IOS,Android,小程序，实现的方式太多，所以想采取比较简单通用的API方法。<br>
+项目逻辑很简单，就是客户端发送游戏的APP信息给服务端，启动信息，心跳信息，事件信息，用来记录活跃，时长，事件。每次客户端启动生成一个uuid作为启动ID,最后根据启动ID整合出新增活跃留存事件等数据。<br>
+系统的实现也不复杂，客户端请求接口，将信息发送给服务端。服务端将数据先缓存进内存里，每种信息放入一个同步队列，ConcurrentLinkedQueue。 再起一个定时任务，每2秒开10个线程，每个线程取2000条数据批量插入mongodb。凌晨再将昨天的数据从MongoDB里取出来，分析完成后存入MySQL中。数据的具体结构和分析就不再多述。<br>
+一开始只在一个游戏做测试，压力不大。后来所有游戏都接入了，服务器压力立刻上来了。主要原因是接口哦请求太多了，cpu负载太大。原生的SpringBoot使用的是tomcat作为容器，然后我就换成了undertow作为容器。Untertow是基于Nio的，换上之后，cpu负载少了一半，但是内存消耗变大了，最关键是，Undertow运行一段时间就无法找接受到接口。于是试着调参数，仍然不行。试着调JVM参数，提高堆的大小，仍然不行。不得已又换成了tomcat。</p>
 ]]></content>
     </entry>
     <entry>

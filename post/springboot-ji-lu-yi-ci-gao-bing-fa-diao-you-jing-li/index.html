@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>文章归档 | 小璇窝</title>
+<title>【SpringBoot】记录一次高并发调优经历 | 小璇窝</title>
 <meta name="description" content="璇音不息 朝暮期许">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://deepexpert-caojw.github.io">小璇窝</a></h3>
@@ -60,77 +61,42 @@
   </div>
 </nav>
 
-    
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          
+          <article class="article">
+            <h1>【SpringBoot】记录一次高并发调优经历</h1>
+            <p class="article-meta">
+              2020-09-03
+              
+            </p>
+            
+            <div class="post-content">
+              <p>本公司是一家游戏公司，需要做一点埋点统计系统。因为客户端涉及到IOS,Android,小程序，实现的方式太多，所以想采取比较简单通用的API方法。<br>
+项目逻辑很简单，就是客户端发送游戏的APP信息给服务端，启动信息，心跳信息，事件信息，用来记录活跃，时长，事件。每次客户端启动生成一个uuid作为启动ID,最后根据启动ID整合出新增活跃留存事件等数据。<br>
+系统的实现也不复杂，客户端请求接口，将信息发送给服务端。服务端将数据先缓存进内存里，每种信息放入一个同步队列，ConcurrentLinkedQueue。 再起一个定时任务，每2秒开10个线程，每个线程取2000条数据批量插入mongodb。凌晨再将昨天的数据从MongoDB里取出来，分析完成后存入MySQL中。数据的具体结构和分析就不再多述。<br>
+一开始只在一个游戏做测试，压力不大。后来所有游戏都接入了，服务器压力立刻上来了。主要原因是接口哦请求太多了，cpu负载太大。原生的SpringBoot使用的是tomcat作为容器，然后我就换成了undertow作为容器。Untertow是基于Nio的，换上之后，cpu负载少了一半，但是内存消耗变大了，最关键是，Undertow运行一段时间就无法找接受到接口。于是试着调参数，仍然不行。试着调JVM参数，提高堆的大小，仍然不行。不得已又换成了tomcat。</p>
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
-            
-              <h3 class="year" data-aos-delay="500">2020</h3>
-              
-                
-                  <article class="post">
-                    <a href="https://deepexpert-caojw.github.io/post/springboot-ji-lu-yi-ci-gao-bing-fa-diao-you-jing-li/">
-                      <h4 class="post-title">
-                        【SpringBoot】记录一次高并发调优经历
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://deepexpert-caojw.github.io/post/redis-3212-ji-qun-da-jian-cluster-fang-shi/">
-                      <h4 class="post-title">
-                        【Redis】Redis  3.2.12  集群搭建 cluster方式
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-                
-              
-                
-              
-            
-              <h3 class="year" data-aos-delay="500">2019</h3>
-              
-                
-              
-                
-              
-                
-                  <article class="post">
-                    <a href="https://deepexpert-caojw.github.io/post/ji-lu-yi-ci-xiang-xi-de-java-li-yong-freemarker-sheng-cheng-word-mo-ban-he-keng/">
-                      <h4 class="post-title">
-                        【JAVA】记录一次详细的java利用freemarker生成word模板和坑
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://deepexpert-caojw.github.io/post/springcloud-ji-eureka-client-zhu-ce-shi-hou-de-yi-ge-keng-fu-wu-yi-jing-zhu-ce-cheng-gong-dan-shi-wu-fa-lian-jie/">
-                      <h4 class="post-title">
-                        【SpringCloud】记eureka client注册时候的一个坑: 服务已经注册成功但是无法连接
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-            
-          </div>
+            </div>
+          </article>
         </div>
-        <div class="row flex-edges">
-  
-  
-</div>
-
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://deepexpert-caojw.github.io/post/redis-3212-ji-qun-da-jian-cluster-fang-shi/">
+                <h3 class="post-title">
+                  【Redis】Redis  3.2.12  集群搭建 cluster方式
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://deepexpert-caojw.github.io/images/avatar.png?v=1599104758383" class="no-responsive avatar">
@@ -195,7 +161,7 @@
     </div>
     <div class="row">
       
-        <a href="https://deepexpert-caojw.github.io/tag/I7P0EquK6/" class="badge secondary">
+        <a href="https://deepexpert-caojw.github.io/tag/I7P0EquK6/" class="badge warning">
           Redis
         </a>
       
@@ -206,6 +172,8 @@
   </div>
 </div>
 
+
+    </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
