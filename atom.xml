@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://deepexpert-caojw.github.io</id>
     <title>小璇窝</title>
-    <updated>2020-09-03T02:27:14.697Z</updated>
+    <updated>2020-09-03T02:40:09.145Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://deepexpert-caojw.github.io"/>
     <link rel="self" href="https://deepexpert-caojw.github.io/atom.xml"/>
@@ -17,6 +17,85 @@
         </link>
         <updated>2020-08-25T05:27:20.000Z</updated>
         <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://deepexpert-caojw.github.io/post-images/1598333264398.jpg" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【Redis】Redis  3.2.12  集群搭建 cluster方式]]></title>
+        <id>https://deepexpert-caojw.github.io/post/redis-3212-ji-qun-da-jian-cluster-fang-shi/</id>
+        <link href="https://deepexpert-caojw.github.io/post/redis-3212-ji-qun-da-jian-cluster-fang-shi/">
+        </link>
+        <updated>2020-08-13T02:28:16.000Z</updated>
+        <content type="html"><![CDATA[<p>1 .  在Linux上新建目录/u01</p>
+<ol start="2">
+<li>
+<p>解压并安装Redis<br>
+tar -zxvf ./redis-3.2.12.tar.gz<br>
+cd /u01/redis-3.2.12<br>
+make &amp; make install</p>
+</li>
+<li>
+<p>新建目录/u01/redis_cluster<br>
+mkdir -p /u01/redis_cluster</p>
+</li>
+</ol>
+<p>4.新建六个Redis文件目录<br>
+mkdir -p /u01/redis_cluster/7001<br>
+mkdir -p /u01/redis_cluster/7002<br>
+mkdir -p /u01/redis_cluster/7003<br>
+mkdir -p /u01/redis_cluster/7004<br>
+mkdir -p /u01/redis_cluster/7005<br>
+mkdir -p /u01/redis_cluster/7006</p>
+<p>5.复制Redis运行文件到六个目录中<br>
+cp -rf /u01/redis-3.2.12/* /u01/redis_cluster/7001<br>
+cp -rf /u01/redis-3.2.12/* /u01/redis_cluster/7002<br>
+cp -rf /u01/redis-3.2.12/* /u01/redis_cluster/7003<br>
+cp -rf /u01/redis-3.2.12/* /u01/redis_cluster/7004<br>
+cp -rf /u01/redis-3.2.12/* /u01/redis_cluster/7005<br>
+cp -rf /u01/redis-3.2.12/* /u01/redis_cluster/7006</p>
+<p>6.在六个目录中分别创建data目录，存放数据<br>
+mkdir -p /u01/redis_cluster/7001/data<br>
+mkdir -p /u01/redis_cluster/7002/data<br>
+mkdir -p /u01/redis_cluster/7003/data<br>
+mkdir -p /u01/redis_cluster/7004/data<br>
+mkdir -p /u01/redis_cluster/7005/data<br>
+mkdir -p /u01/redis_cluster/7006/data</p>
+<p>7.复制执行文件到指定目录<br>
+mkdir -p /u01/redis_cluster/bin<br>
+cd /u01/redis-3.2.12/src<br>
+cp ./mkreleasehdr.sh redis-benchmark redis-check-aof redis-cli redis-server redis-trib.rb /u01/redis_cluster/bin</p>
+<p>8.在六个目录(/u01/redis_cluster/7001,7002,7003,7004,7005,7006)下分别创建配置文件redis.conf<br>
+port 7001<br>
+daemonize yes<br>
+bind 192.168.25.100<br>
+dir /u01/redis_cluster/7001/data/<br>
+pidfile /var/run/redis_7001.pid<br>
+cluster-enabled yes<br>
+cluster-config-file nodes7001.conf<br>
+cluster-node-timeout 15000<br>
+appendonly yes</p>
+<p>每个目录下的配置文件端口号和文件目都不相同</p>
+<p>9.启动各Redis实例<br>
+/u01/redis_cluster/bin/redis-server /u01/redis_cluster/7001/redis.conf<br>
+/u01/redis_cluster/bin/redis-server /u01/redis_cluster/7002/redis.conf<br>
+/u01/redis_cluster/bin/redis-server /u01/redis_cluster/7003/redis.conf<br>
+/u01/redis_cluster/bin/redis-server /u01/redis_cluster/7004/redis.conf<br>
+/u01/redis_cluster/bin/redis-server /u01/redis_cluster/7005/redis.conf<br>
+/u01/redis_cluster/bin/redis-server /u01/redis_cluster/7006/redis.conf</p>
+<ol start="10">
+<li>查看本机Ruby版本 如果低于2.2.2 则需要升级Ruby<br>
+推荐使用rvm升级，注意 RubyChina的镜像地址换了,网上的教程都不对，需要去官网查询，升级完之后还需要配置电脑默认Ruby版本<br>
+11.升级所需软件<br>
+yum install ruby yum install rubygems gem install redis</li>
+</ol>
+<p>12.建立群集<br>
+/u01/redis_cluster/bin/redis-trib.rb create –replicas 1<br>
+192.168.25.100:7001 192.168.25.100:7002 192.168.25.100:7003<br>
+192.168.25.100:7004 192.168.25.100:7005<br>
+192.168.25.100:7006</p>
+<ol start="13">
+<li>cluster nodes命令 ，可以看到， 一共6个节点集群的主从自动分配好了 ，三主三从，如果关掉主节点 从节点会顶替主节点。每一条数据会根据key的hash分配到唯一主节点里，从节点会同步。当查询这个key，也只会去唯一的节点里去查询。<br>
+<img src="https://deepexpert-caojw.github.io/post-images/1599100742351.png" alt="" loading="lazy"></li>
+</ol>
 ]]></content>
     </entry>
     <entry>
