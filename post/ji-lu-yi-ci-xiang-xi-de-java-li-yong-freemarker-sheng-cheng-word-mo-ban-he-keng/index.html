@@ -1,31 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://deepexpert-caojw.github.io</id>
-    <title>小璇窝</title>
-    <updated>2020-09-03T02:27:14.697Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://deepexpert-caojw.github.io"/>
-    <link rel="self" href="https://deepexpert-caojw.github.io/atom.xml"/>
-    <subtitle>璇音不息 朝暮期许</subtitle>
-    <logo>https://deepexpert-caojw.github.io/images/avatar.png</logo>
-    <icon>https://deepexpert-caojw.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, 小璇窝</rights>
-    <entry>
-        <title type="html"><![CDATA[璇音不息 朝暮期许]]></title>
-        <id>https://deepexpert-caojw.github.io/post/xuan-sheng-bu-xi-zhao-mu-qi-xu/</id>
-        <link href="https://deepexpert-caojw.github.io/post/xuan-sheng-bu-xi-zhao-mu-qi-xu/">
-        </link>
-        <updated>2020-08-25T05:27:20.000Z</updated>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://deepexpert-caojw.github.io/post-images/1598333264398.jpg" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【JAVA】记录一次详细的java利用freemarker生成word模板和坑]]></title>
-        <id>https://deepexpert-caojw.github.io/post/ji-lu-yi-ci-xiang-xi-de-java-li-yong-freemarker-sheng-cheng-word-mo-ban-he-keng/</id>
-        <link href="https://deepexpert-caojw.github.io/post/ji-lu-yi-ci-xiang-xi-de-java-li-yong-freemarker-sheng-cheng-word-mo-ban-he-keng/">
-        </link>
-        <updated>2019-03-16T02:21:04.000Z</updated>
-        <content type="html"><![CDATA[<p>需求描述: 根据公司纪律小组的电子违规记录，生成word综合分析文档。形式如：</p>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>【JAVA】记录一次详细的java利用freemarker生成word模板和坑 | 小璇窝</title>
+<meta name="description" content="璇音不息 朝暮期许">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://deepexpert-caojw.github.io/favicon.ico?v=1599099990529">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://deepexpert-caojw.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://deepexpert-caojw.github.io">
+        <img class="avatar" src="https://deepexpert-caojw.github.io/images/avatar.png?v=1599099990529" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://deepexpert-caojw.github.io">
+        <h1 class="site-title">小璇窝</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://deepexpert-caojw.github.io/post/xuan-sheng-bu-xi-zhao-mu-qi-xu" class="menu purple-link">
+            璇音
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">【JAVA】记录一次详细的java利用freemarker生成word模板和坑</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-03-16</span>
+            
+          </div>
+          <div class="post-content">
+            <p>需求描述: 根据公司纪律小组的电子违规记录，生成word综合分析文档。形式如：</p>
 <p>1 . 上班时间打游戏</p>
 <p>（1）XXX在XXX时间打游戏</p>
 <p>图片</p>
@@ -61,20 +110,58 @@ String itempic;<br>
 <p>&lt;/w:binData&gt;&lt;v:shape id=&quot;_x56fe__x7247__x0020_1&quot; o:spid=&quot;_x0000_i1025&quot; type=&quot;#_x0000_t75&quot; alt=&quot;大厅【音】_20190111135230431&quot; style=&quot;width:441.8pt;height:248.75pt;visibility:visible;mso-wrap-style:square&quot;&gt;&lt;v:imagedata src=&quot;${&quot;wordml://0300000&quot;+item_index+1+&quot;.jpg&quot;}&quot; o:title=&quot;大厅【音】_20190111135230431&quot;/&gt;&lt;/v:shape&gt;&lt;/w:pict&gt;&lt;/w:r&gt;&lt;/w:p&gt;</p>
 <p>&lt;/#list&gt;</p>
 <p>&lt;/#list&gt;</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【SpringCloud】记eureka client注册时候的一个坑: 服务已经注册成功但是无法连接]]></title>
-        <id>https://deepexpert-caojw.github.io/post/springcloud-ji-eureka-client-zhu-ce-shi-hou-de-yi-ge-keng-fu-wu-yi-jing-zhu-ce-cheng-gong-dan-shi-wu-fa-lian-jie/</id>
-        <link href="https://deepexpert-caojw.github.io/post/springcloud-ji-eureka-client-zhu-ce-shi-hou-de-yi-ge-keng-fu-wu-yi-jing-zhu-ce-cheng-gong-dan-shi-wu-fa-lian-jie/">
-        </link>
-        <updated>2019-02-19T08:31:16.000Z</updated>
-        <content type="html"><![CDATA[<p>SpringCloud向eureka服务注册中心时候，如果不指定IP，设定的IP地址可能是局域网IP，如果client之间网段不通，会无法进行通信。</p>
-<p>SpringCloud注册时候使用指定的IP注册：</p>
-<p>eureka:<br>
-instance:<br>
-prefer-ip-address: true<br>
-ip-address: 10.33.133.133</p>
-]]></content>
-    </entry>
-</feed>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://deepexpert-caojw.github.io/post/springcloud-ji-eureka-client-zhu-ce-shi-hou-de-yi-ge-keng-fu-wu-yi-jing-zhu-ce-cheng-gong-dan-shi-wu-fa-lian-jie/">
+              <h3 class="post-title">
+                下一篇：【SpringCloud】记eureka client注册时候的一个坑: 服务已经注册成功但是无法连接
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">璇音不息 朝暮期许</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://deepexpert-caojw.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
