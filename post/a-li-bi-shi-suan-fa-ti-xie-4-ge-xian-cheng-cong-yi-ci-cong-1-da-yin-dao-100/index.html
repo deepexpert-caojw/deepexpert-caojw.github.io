@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>阿里笔试算法题： 写4个线程从依次从1打印到100 | 小璇窝</title>
-<link rel="shortcut icon" href="https://deepexpert-caojw.github.io/favicon.ico?v=1600360222519">
+<link rel="shortcut icon" href="https://deepexpert-caojw.github.io/favicon.ico?v=1600393428217">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://deepexpert-caojw.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="阿里笔试算法题： 写4个线程从依次从1打印到100 | 小璇窝 - Atom Feed" href="https://deepexpert-caojw.github.io/atom.xml">
@@ -31,7 +31,7 @@ private ..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://deepexpert-caojw.github.io">
-  <img class="avatar" src="https://deepexpert-caojw.github.io/images/avatar.png?v=1600360222519" alt="">
+  <img class="avatar" src="https://deepexpert-caojw.github.io/images/avatar.png?v=1600393428217" alt="">
   </a>
   <h1 class="site-title">
     小璇窝
@@ -160,7 +160,6 @@ public synchronized void  returnLock(String name){
 <p>public class Main {</p>
 <pre><code>public static void main(String[] args) {
 
-
     Sender sender =new Sender();
     Thread a =new Thread(new PrintThread(&quot;A&quot;,sender,0));
     Thread b =new Thread(new PrintThread(&quot;B&quot;,sender,1));
@@ -170,36 +169,6 @@ public synchronized void  returnLock(String name){
     b.start();
     c.start();
     d.start();
-
-
-    // write your code here】
-</code></pre>
-<p>//        byte []data =new byte[]{1,2,3,4};<br>
-//        ByteBuffer byteBuffer =ByteBuffer.wrap(data);<br>
-//<br>
-//        System.out.println(isValid(&quot;[{[}]&quot;));<br>
-}<br>
-public static boolean isValid(String s) {<br>
-char[] chars =s.toCharArray();<br>
-StringBuilder sb =new StringBuilder();<br>
-for(char c :chars){<br>
-sb.append(c);<br>
-Integer length =sb.length();<br>
-if(length&gt;=2){<br>
-char c2 = sb.charAt(length-1);<br>
-char c1 = sb.charAt(length-2);</p>
-<pre><code>            if((c1=='['&amp;&amp;c2==']')||(c1=='{'&amp;&amp;c2=='}')||(c1=='('&amp;&amp;c2==')')) {
-                sb.deleteCharAt(length - 1);
-                sb.deleteCharAt(length - 2);
-            }
-
-        }
-    }
-    if(sb.toString().equals(&quot;&quot;)){
-        return true;
-    }else{
-        return false;
-    }
 }
 </code></pre>
 <p>}</p>
