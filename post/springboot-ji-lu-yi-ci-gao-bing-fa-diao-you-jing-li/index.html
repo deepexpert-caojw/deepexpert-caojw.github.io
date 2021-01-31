@@ -1,50 +1,102 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>【SpringBoot】记录一次高并发调优经历 | 小璇窝</title>
-<link rel="shortcut icon" href="https://deepexpert-caojw.github.io/favicon.ico?v=1612104611079">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<meta name="description" content="璇声不息 朝暮期许">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://deepexpert-caojw.github.io/favicon.ico?v=1612108920062">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://deepexpert-caojw.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="【SpringBoot】记录一次高并发调优经历 | 小璇窝 - Atom Feed" href="https://deepexpert-caojw.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="本公司是一家游戏公司，需要做一点埋点统计系统。因为客户端涉及到IOS,Android,小程序，实现的方式太多，所以想采取比较简单通用的API方法。
-项目逻辑很简单，就是客户端发送游戏的APP信息给服务端，启动信息，心跳信息，事件信息，用来记..." />
-    <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://deepexpert-caojw.github.io">
-  <img class="avatar" src="https://deepexpert-caojw.github.io/images/avatar.png?v=1612104611079" alt="">
-  </a>
-  <h1 class="site-title">
-    小璇窝
-  </h1>
-  <p class="site-description">
-    璇声不息 朝暮期许
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="https://deepexpert-caojw.github.io" class="menu">
-          璇音
-        </a>
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://deepexpert-caojw.github.io">
+        <img class="avatar" src="https://deepexpert-caojw.github.io/images/avatar.png?v=1612108920062" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://deepexpert-caojw.github.io">
+        <h1 class="site-title">小璇窝</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://deepexpert-caojw.github.io" class="menu purple-link">
+            璇音
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">【SpringBoot】记录一次高并发调优经历</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-09-03</span>
+            
+          </div>
+          <div class="post-content">
+            <p>本公司是一家游戏公司，需要做一点埋点统计系统。因为客户端涉及到IOS,Android,小程序，实现的方式太多，所以想采取比较简单通用的API方法。<br>
+项目逻辑很简单，就是客户端发送游戏的APP信息给服务端，启动信息，心跳信息，事件信息，用来记录活跃，时长，事件。每次客户端启动生成一个uuid作为启动ID,最后根据启动ID整合出新增活跃留存事件等数据。<br>
+系统的实现也不复杂，客户端请求接口，将信息发送给服务端。服务端将数据先缓存进内存里，每种信息放入一个同步队列，ConcurrentLinkedQueue。 再起一个定时任务，每2秒开10个线程，每个线程取2000条数据批量插入mongodb。凌晨再将昨天的数据从MongoDB里取出来，分析完成后存入MySQL中。数据的具体结构和分析就不再多述。<br>
+一开始只在一个游戏做测试，压力不大。后来所有游戏都接入了，服务器压力立刻上来了。主要原因是接口哦请求太多了，cpu负载太大。原生的SpringBoot使用的是tomcat作为容器，然后我就换成了undertow作为容器。Untertow是基于Nio的，换上之后，cpu负载少了一半，但是内存消耗变大了，最关键是，Undertow运行一段时间就无法找接受到接口。于是试着调参数，仍然不行。试着调JVM参数，提高堆的大小，仍然不行。不得已又换成了tomcat。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://deepexpert-caojw.github.io/post/redis-3212-ji-qun-da-jian-cluster-fang-shi/">
+              <h3 class="post-title">
+                下一篇：【Redis】Redis  3.2.12  集群搭建 cluster方式
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">璇声不息 朝暮期许</div>
   <div class="social-container">
     
       
@@ -58,100 +110,26 @@
       
     
   </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://deepexpert-caojw.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              【SpringBoot】记录一次高并发调优经历
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-09-03
-              </span>
-              <span>
-                2 min read
-              </span>
-              
-            </div>
-            
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p>本公司是一家游戏公司，需要做一点埋点统计系统。因为客户端涉及到IOS,Android,小程序，实现的方式太多，所以想采取比较简单通用的API方法。<br>
-项目逻辑很简单，就是客户端发送游戏的APP信息给服务端，启动信息，心跳信息，事件信息，用来记录活跃，时长，事件。每次客户端启动生成一个uuid作为启动ID,最后根据启动ID整合出新增活跃留存事件等数据。<br>
-系统的实现也不复杂，客户端请求接口，将信息发送给服务端。服务端将数据先缓存进内存里，每种信息放入一个同步队列，ConcurrentLinkedQueue。 再起一个定时任务，每2秒开10个线程，每个线程取2000条数据批量插入mongodb。凌晨再将昨天的数据从MongoDB里取出来，分析完成后存入MySQL中。数据的具体结构和分析就不再多述。<br>
-一开始只在一个游戏做测试，压力不大。后来所有游戏都接入了，服务器压力立刻上来了。主要原因是接口哦请求太多了，cpu负载太大。原生的SpringBoot使用的是tomcat作为容器，然后我就换成了undertow作为容器。Untertow是基于Nio的，换上之后，cpu负载少了一半，但是内存消耗变大了，最关键是，Undertow运行一段时间就无法找接受到接口。于是试着调参数，仍然不行。试着调JVM参数，提高堆的大小，仍然不行。不得已又换成了tomcat。</p>
 
-              </div>
-              <div class="toc-container">
-                
-              </div>
-            </div>
-          </article>
-        </div>
-
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://deepexpert-caojw.github.io/post/redis-3212-ji-qun-da-jian-cluster-fang-shi/">
-              <h3 class="post-title">
-                【Redis】Redis  3.2.12  集群搭建 cluster方式
-              </h3>
-            </a>
-          </div>
-        
-
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://deepexpert-caojw.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
-      </div>
     </div>
+    <script type="application/javascript">
 
-    <script>
-      hljs.initHighlightingOnLoad()
+hljs.initHighlightingOnLoad()
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+</script>
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
   </body>
 </html>
