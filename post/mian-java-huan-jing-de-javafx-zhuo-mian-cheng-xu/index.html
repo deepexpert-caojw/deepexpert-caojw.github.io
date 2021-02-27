@@ -1,9 +1,11 @@
+
+<!DOCTYPE html>
 <html>
   <head>
     
 <meta charset="utf-8" >
 
-<title>小璇窝</title>
+<title>免Java环境的Javafx桌面程序 | 小璇窝</title>
 <meta name="description" content="璇声不息 朝暮期许">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -63,19 +65,59 @@
 </transition>
 
 
-        <div class="content-container">
+      <div class="content-container">
+        <div class="post-detail">
           
-          <div class="tags-container">
+          <h2 class="post-title">免Java环境的Javafx桌面程序</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-02-27</span>
             
-              <a class="tag" href="https://deepexpert-caojw.github.io/tag/ptR4qWyV_/">JAVA</a>
-            
-              <a class="tag" href="https://deepexpert-caojw.github.io/tag/I7P0EquK6/">Redis</a>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://deepexpert-caojw.github.io/tag/ptR4qWyV_/">
+                    JAVA
+                    
+                  </a>
+                
+              </span>
             
           </div>
+          <div class="post-content">
+            <p>近期接到一个需求，就是给公司客服写一个桌面小工具。我之前是会winform wpf等桌面程序的，但是好几年了，不想回顾了，就用Java撸了一个。</p>
+<ol>
+<li>
+<p>项目结构<br>
+项目就是一个javafx的项目，MVC架构，用maven进行项目管理。javafx在这里不再多说。重点在于免Java环境</p>
+</li>
+<li>
+<p>正常打成Jar包后，只需要将Jre包复制进客服妹妹的电脑，然后将jar包拷入进同级目录，再写一个bat脚本。<br>
+脚本代码如下：<br>
+start jre1.8.0_271/bin/java -jar ypidCompare.jar</p>
+</li>
+<li>
+<p>完整的结构如下。双击start.bat即可打开</p>
+<figure data-type="image" tabindex="1"><img src="https://deepexpert-caojw.github.io/post-images/1614438212261.png" alt="" loading="lazy"></figure>
+</li>
+</ol>
 
+          </div>
         </div>
 
-        <div class="site-footer">
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://deepexpert-caojw.github.io/post/a-li-bi-shi-suan-fa-ti-xie-4-ge-xian-cheng-cong-yi-ci-cong-1-da-yin-dao-100/">
+              <h3 class="post-title">
+                下一篇：阿里笔试算法题： 写4个线程从依次从1打印到100
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
   <div class="slogan">璇声不息 朝暮期许</div>
   <div class="social-container">
     
@@ -94,8 +136,8 @@
 </div>
 
 
-      </div>
-      <script type="application/javascript">
+    </div>
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 
@@ -111,6 +153,5 @@ var app = new Vue({
 
 
 
-    </div>
   </body>
 </html>

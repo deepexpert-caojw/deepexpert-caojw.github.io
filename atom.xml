@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://deepexpert-caojw.github.io</id>
     <title>小璇窝</title>
-    <updated>2021-01-31T16:02:34.651Z</updated>
+    <updated>2021-02-27T15:04:42.587Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://deepexpert-caojw.github.io"/>
     <link rel="self" href="https://deepexpert-caojw.github.io/atom.xml"/>
@@ -10,6 +10,30 @@
     <logo>https://deepexpert-caojw.github.io/images/avatar.png</logo>
     <icon>https://deepexpert-caojw.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 小璇窝</rights>
+    <entry>
+        <title type="html"><![CDATA[免Java环境的Javafx桌面程序]]></title>
+        <id>https://deepexpert-caojw.github.io/post/mian-java-huan-jing-de-javafx-zhuo-mian-cheng-xu/</id>
+        <link href="https://deepexpert-caojw.github.io/post/mian-java-huan-jing-de-javafx-zhuo-mian-cheng-xu/">
+        </link>
+        <updated>2021-02-27T14:57:12.000Z</updated>
+        <content type="html"><![CDATA[<p>近期接到一个需求，就是给公司客服写一个桌面小工具。我之前是会winform wpf等桌面程序的，但是好几年了，不想回顾了，就用Java撸了一个。</p>
+<ol>
+<li>
+<p>项目结构<br>
+项目就是一个javafx的项目，MVC架构，用maven进行项目管理。javafx在这里不再多说。重点在于免Java环境</p>
+</li>
+<li>
+<p>正常打成Jar包后，只需要将Jre包复制进客服妹妹的电脑，然后将jar包拷入进同级目录，再写一个bat脚本。<br>
+脚本代码如下：<br>
+start jre1.8.0_271/bin/java -jar ypidCompare.jar</p>
+</li>
+<li>
+<p>完整的结构如下。双击start.bat即可打开</p>
+<figure data-type="image" tabindex="1"><img src="https://deepexpert-caojw.github.io/post-images/1614438212261.png" alt="" loading="lazy"></figure>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[阿里笔试算法题： 写4个线程从依次从1打印到100]]></title>
         <id>https://deepexpert-caojw.github.io/post/a-li-bi-shi-suan-fa-ti-xie-4-ge-xian-cheng-cong-yi-ci-cong-1-da-yin-dao-100/</id>
