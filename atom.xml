@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://deepexpert-caojw.github.io</id>
     <title>小璇窝</title>
-    <updated>2021-04-13T03:20:12.526Z</updated>
+    <updated>2021-04-13T03:23:03.044Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://deepexpert-caojw.github.io"/>
     <link rel="self" href="https://deepexpert-caojw.github.io/atom.xml"/>
@@ -31,6 +31,8 @@
 <img src="https://deepexpert-caojw.github.io/post-images/1618283929225.jpg" alt="" loading="lazy"></p>
 </li>
 </ol>
+<p>以上代码是中途接手的一个项目里面的写法，有些地方还不明白，感觉有点骚。我接手时候没有加判断，<br>
+上传文件读不到的。欢迎邮件交流。</p>
 ]]></content>
     </entry>
     <entry>
