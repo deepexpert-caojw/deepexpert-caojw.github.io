@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://deepexpert-caojw.github.io</id>
     <title>小璇窝</title>
-    <updated>2021-03-02T05:57:34.275Z</updated>
+    <updated>2021-04-13T03:20:12.526Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://deepexpert-caojw.github.io"/>
     <link rel="self" href="https://deepexpert-caojw.github.io/atom.xml"/>
@@ -10,6 +10,29 @@
     <logo>https://deepexpert-caojw.github.io/images/avatar.png</logo>
     <icon>https://deepexpert-caojw.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 小璇窝</rights>
+    <entry>
+        <title type="html"><![CDATA[SpringBoot重新包装request]]></title>
+        <id>https://deepexpert-caojw.github.io/post/9GfKzdwXl/</id>
+        <link href="https://deepexpert-caojw.github.io/post/9GfKzdwXl/">
+        </link>
+        <updated>2021-04-13T03:07:54.000Z</updated>
+        <content type="html"><![CDATA[<p>首先要知道, ServletRequest中getReader()和getInputStream()只能调用一次，所以要写一个字节数组缓存Inputstream。</p>
+<ol>
+<li>写一个类，继承HttpServletRequestWrapper。类里声明一个 private byte[] body。重写构造和getInputStream。如下:<br>
+<img src="https://deepexpert-caojw.github.io/post-images/1618283641098.jpg" alt="" loading="lazy"></li>
+</ol>
+<p>因为使用表单或者上传文件，不走getInputStream,所以要判断下，如果是这种类型请求，就不必赋值。</p>
+<ol start="2">
+<li>
+<p>自定义写一个MyDispatcherServlet继承DispatcherServlet,重写doDispacth(..)方法，讲request换成刚刚自定义的requestWrapper。</p>
+</li>
+<li>
+<p>覆盖Bean<br>
+<img src="https://deepexpert-caojw.github.io/post-images/1618283929225.jpg" alt="" loading="lazy"></p>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[免Java环境的Javafx桌面程序]]></title>
         <id>https://deepexpert-caojw.github.io/post/mian-java-huan-jing-de-javafx-zhuo-mian-cheng-xu/</id>
